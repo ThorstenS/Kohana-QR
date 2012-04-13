@@ -30,26 +30,26 @@ abstract class Kohana_Qr {
     protected $ecc = 'L';
     
     /**
-	 * Returns an instance of QR
-	 *
-	 *     $qr = Qr::instance($size = 4, $ecc = 'L');
-	 *
-	 * @param   int  Size of QR code
-	 * @param   string  ECC level
-	 * @return  Qr object
-	 */
+     * Returns an instance of QR
+     *
+     *     $qr = Qr::instance($size = 4, $ecc = 'L');
+     *
+     * @param   int  Size of QR code
+     * @param   string  ECC level
+     * @return  Qr object
+     */
     public static function factory($size = 4, $ecc = 'L')
     {
         return new Qr($size, $ecc);
     }
     
     /**
-	 * Constructor for QR class
+     * Constructor for QR class
      *
-	 * @param   int  Size of QR code
-	 * @param   string  ECC level
-	 * @throws  Qr_Exception
-	 */
+     * @param   int  Size of QR code
+     * @param   string  ECC level
+     * @throws  Qr_Exception
+     */
     public function __construct($size = 4, $ecc = 'L')
     {
         $this->_valid_sizes = range(1,40);
@@ -69,11 +69,11 @@ abstract class Kohana_Qr {
     }
     
     /**
-	 * Render data into image
-	 * 
-	 * @param   string  data
-	 * @return  image
-	 */
+     * Render data into image
+     * 
+     * @param   string  data
+     * @return  image
+     */
     public function render($data)
     {
         return QRCode::png($data, false, $this->ecc, $this->size);
