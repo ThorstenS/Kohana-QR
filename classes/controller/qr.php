@@ -33,8 +33,8 @@ class Controller_Qr extends Controller {
         }
         
         $qr = QR::factory($size, $ecc);
+        $image = $qr->render($text);
         
-        $this->response->headers('Content-Type', 'image/png');
-        $this->response->body($qr->render($text));
+        $this->response->headers('Content-Type', 'image/svg+xml')->body($image);
     }
 }
