@@ -25,10 +25,12 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
  */
  
-    $QR_BASEDIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR;
+    $QR_ROOTDIR  = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR;
+    $QR_BASEDIR  = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'full'.DIRECTORY_SEPARATOR;
+	$QR_OUTDIR   = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'merged'.DIRECTORY_SEPARATOR;
     $QR_TOOLSDIR = dirname(__FILE__).DIRECTORY_SEPARATOR;
     
-    $outputFile = $QR_BASEDIR.'phpqrcode.php';
+    $outputFile = $QR_OUTDIR.'phpqrcode.php';
     
     // Required libs
     
@@ -43,11 +45,14 @@
         $QR_BASEDIR.'qrsplit.php',
         $QR_BASEDIR.'qrrscode.php',
         $QR_BASEDIR.'qrmask.php',
+	    $QR_BASEDIR."qrarea.php",
+	    $QR_BASEDIR."qrcanvas.php",
+	    $QR_BASEDIR."qrsvg.php",
         $QR_BASEDIR.'qrencode.php'
     );
     
     $headerFile = $QR_TOOLSDIR.'merged_header.php';
-    $versionFile = $QR_BASEDIR.'VERSION';
+    $versionFile = $QR_ROOTDIR.'VERSION';
     
     $outputCode = '';
     
@@ -55,7 +60,7 @@
         $outputCode .= "\n\n".'//---- '.basename($fileName).' -----------------------------'."\n\n";
         $anotherCode = file_get_contents($fileName);
         $anotherCode = preg_replace ('/^<\?php/', '', $anotherCode);
-        $anotherCode = preg_replace ('/\?>\*$/', '', $anotherCode);
+        $anotherCode = preg_replace ('/\?>/', '', $anotherCode);
         $outputCode .= "\n\n".$anotherCode."\n\n";
     }
     
