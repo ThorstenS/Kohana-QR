@@ -18,6 +18,11 @@ abstract class Kohana_Qr {
     protected $size = 4;
 
     /*
+     *@var $frame_size    Frame-Size surrounding the QR code
+     */
+    protected $frame_size = 4;
+
+    /*
      *@var $_valid_eccs    Valid options for ecc parameter
      */
     protected $_valid_eccs = array('L', 'M', 'Q', 'H');
@@ -48,7 +53,7 @@ abstract class Kohana_Qr {
      * @param   string  ECC level
      * @throws  Qr_Exception
      */
-    public function __construct($size = 4, $ecc = 'L')
+    public function __construct($size = 4, $ecc = 'L', $frame_size = 4)
     {
         $this->_valid_sizes = range(1,40);
 
@@ -62,6 +67,7 @@ abstract class Kohana_Qr {
             throw new Qr_Exception('Invalid QR ecc level');
         }
 
+        $this->frame_size = abs((int) $frame_size);
         $this->size = $size;
         $this->ecc  = $ecc;
     }
@@ -74,7 +80,7 @@ abstract class Kohana_Qr {
      */
     public function render($data)
     {
-        return QRCode::png($data, false, $this->ecc, $this->size);
+        return QRCode::png($data, false, $this->ecc, $this->size, $this->frame_size);
     }
 
 }
