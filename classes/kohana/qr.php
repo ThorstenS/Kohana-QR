@@ -41,9 +41,9 @@ abstract class Kohana_Qr {
      * @param   string  ECC level
      * @return  Qr object
      */
-    public static function factory($size = 4, $ecc = 'L')
+    public static function factory($size = 4, $ecc = 'L', $frame_size = 4)
     {
-        return new Qr($size, $ecc);
+        return new Qr($size, $ecc, $frame_size);
     }
 
     /**
