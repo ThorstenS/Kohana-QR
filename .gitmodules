@@ -1,0 +1,3 @@
+[submodule "vendor/phpqrcode"]
+	path = vendor/phpqrcode
+	url = git://git.code.sf.net/p/phpqrcode/git
